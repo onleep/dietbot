@@ -47,8 +47,8 @@ async def logged_water(message: Message, state: FSMContext):
         data['weather_temp'] = {datenow: temp}
         await state.update_data(weather_temp={datenow: temp})
         if temp and temp > 26:
-            # data['water_daygoal'] = {datenow: (wdg := data['water_goal'] + 500)}
-            await state.update_data(water_daygoal={datenow: data['water_goal'] + 500})
+            water_daygoal = await is_today(data, 'water_daygoal') + 500
+            await state.update_data(water_daygoal={datenow: water_daygoal})
 
     dtarget = await prelogged(data, 'logged_water', msg)
     await state.update_data(logged_water=dtarget)
@@ -154,6 +154,8 @@ async def burned_calories(message: Message, state: FSMContext):
     msg = int(msg * train_load)
     datenow = datetime.now().strftime(f'%Y-%m-%d')
     burned_calories = await is_today(data, 'burned_calories') + msg
+    water_daygoal = await is_today(data, 'water_daygoal') + burned_calories * 1.2
     await state.update_data(burned_calories={datenow: burned_calories})
+    await state.update_data(water_daygoal={datenow: water_daygoal})
     await state.set_state(None)
     await check_progress(message, state)

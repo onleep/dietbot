@@ -79,8 +79,9 @@ async def check_progress(req: Message | CallbackQuery, state: FSMContext):
     logged_calories = await is_today(data, 'logged_calories')
     burned_calories = await is_today(data, 'burned_calories')
 
-    if (wdg := data.get('water_daygoal')) and datenow in wdg:
-        data['water_goal'] = wdg[datenow]
+    if (wdif := data.get('water_daygoal')) and datenow in wdif:
+        wdif = wdif[datenow] - data['water_goal']
+        data['water_goal'] = data['water_daygoal'][datenow]
     left_water = (wg := data['water_goal']) - logged_water
     wat_asw = f'Осталось: {left_water} мл' if left_water > 0 else 'Вы выполнили норму'
 
@@ -89,7 +90,7 @@ async def check_progress(req: Message | CallbackQuery, state: FSMContext):
     cal_asw = (f'Баланс: {left_calories}'
                if logged_calories < sum_calories else 'Вы выполнили норму')
 
-    high_temp = f'🥵 +500мл мл из-за жаркой погоды\n' if wdg and datenow in wdg else ''
+    high_temp = f'🥵 +{wdif}мл мл из-за тренировок/погоды\n' if wdif else ''
     progress = (f'{high_temp}'
                 f'💧 Вода:\n'
                 f'- Сегодня выпито: {logged_water} мл из {wg}\n'
