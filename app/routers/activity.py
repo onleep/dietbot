@@ -29,7 +29,7 @@ async def log_water(req: Message | CallbackQuery, state: FSMContext):
     if data.get('calories_goal') is None:
         await method(f'⚙️ Профиль не настроен', reply_markup=buttons.set_profile)
         return
-    await method('Сколько вы выпили мл воды?', reply_markup=buttons.go_back)
+    await method('💧 Сколько вы выпили мл воды?', reply_markup=buttons.go_back)
     await state.set_state(User.logged_water)
 
 
