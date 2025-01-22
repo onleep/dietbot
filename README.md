@@ -23,6 +23,11 @@ https://github.com/user-attachments/assets/c3a2575a-c5e0-4761-bcb2-243b2d1acc7a
 - [OpenWeatherMap](https://github.com/onleep/dietbot/blob/main/app/api/temp.py) - сервис для парсинга погоды. При температуре выше 26°C, пользователю на определенный день повышается цель по потреблению воды.
 - [Nutritionix](https://github.com/onleep/dietbot/blob/main/app/api/food.py) - сервис для парсинга калорийности еды. Сервис Nutritionix показывает себя лучше в определении калорийности еды и имеет адекватный API.
 
+## Дополнительно
+- Бот задеплоен на сервисе render.com, что позволяет иметь доступ в любое время.
+- Реализован функционал [просмотра графика](https://github.com/onleep/dietbot/blob/4070236d31a78e8317309771b3fb524abb63031b/app/routers/mainpage.py#L105) за последнюю неделю активности пользователя.
+- Калорийность продукта определяется на основе умного сервиса + учитываются тренировки в целе калорий.
+
 ## Логирование
 Реализовано [логирование ошибок](https://github.com/onleep/dietbot/blob/main/app/api/temp.py) при обращение к API. Также логируются все [команды и коллбеки](https://github.com/onleep/dietbot/blob/ef0e680130e0a5268250b00048edf3194ac93df6/app/tools/logger.py#L15) обращения к боту от пользователей +ошибки используя Middleware.
 
