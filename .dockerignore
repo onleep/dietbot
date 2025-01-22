@@ -1,0 +1,8 @@
+.dockerignore
+.env.example
+.gitignore
+.venv/
+
+**/__pycache__/
+dietbot.log
+docker/
