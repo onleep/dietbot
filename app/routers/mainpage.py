@@ -90,7 +90,7 @@ async def check_progress(req: Message | CallbackQuery, state: FSMContext):
     cal_asw = (f'Баланс: {left_calories}'
                if logged_calories < sum_calories else 'Вы выполнили норму')
 
-    high_temp = f'🥵 +{wdif}мл мл из-за тренировок/погоды\n' if wdif else ''
+    high_temp = f'🥵 +{wdif}мл из-за тренировок/погоды\n' if wdif else ''
     progress = (f'{high_temp}'
                 f'💧 Вода:\n'
                 f'- Сегодня выпито: {logged_water} мл из {wg}\n'
