@@ -23,7 +23,11 @@ async def main():
     dp.include_router(activity)
     dp.message.middleware(LoggingMiddleware())
     dp.callback_query.middleware(LoggingMiddleware())
-    await dp.start_polling(bot, on_startup=commands)
+    updates = ['message', 'callback_query']
+    await dp.start_polling(bot,
+                           on_startup=commands,
+                           allowed_updates=updates,
+                           timeout=10)
 
 
 if __name__ == "__main__":
