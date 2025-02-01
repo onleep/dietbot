@@ -2,7 +2,7 @@ import aiohttp
 from dotenv import dotenv_values
 from tools.logger import logging
 
-url = f'https://trackapi.nutritionix.com/v2/natural/nutrients'
+URL = f'https://trackapi.nutritionix.com/v2/natural/nutrients'
 env = dotenv_values()
 headers = {
     'x-app-id': env.get('FOOD_APPID'),
@@ -16,7 +16,7 @@ async def get_kcal(product_name):
 
     async with aiohttp.ClientSession() as session:
         try:
-            response = await session.post(url=url, json=data, headers=headers)
+            response = await session.post(URL, json=data, headers=headers)
             response.raise_for_status()
             data = await response.json()
         except Exception as e: 
